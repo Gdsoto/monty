@@ -1,5 +1,5 @@
-#ifndef HOLBERTON_H
-#define HOLBERTON_H
+#ifndef MONTY_H
+#define MONTY_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -58,4 +58,4 @@ void op_pint(stack_t **stack, unsigned int line);
 void get_opcode(stack_t **, unsigned int, char *);
 void freeList(stack_t *stack);
 
-#endif /* HOLBERTON_H */
+#endif /* MONTY_H */
