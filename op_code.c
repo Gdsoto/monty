@@ -3,42 +3,42 @@
 /**
  * op_push - opcode push pushes an element to the stack
  * @stack: double linked list that makes the stack
- * @line: counter of lines
+ * @line_number: counter of lines
  *
  * Return: EXIT_FAILURE if failed
  */
 
-void op_push(stack_t **stack, unsigned int line)
+void op_push(stack_t **stack, unsigned int line_number)
 {
 	stack_t  *new_node, *temp;
 	int i, j = 1, num;
 
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
-	{ fprintf(stderr, "USAGE: monti file\n");
-		freeList(new_node);
+	{ fprintf(stderr, "USAGE: monty file\n");
+		fmonkey(new_node);
 		exit(EXIT_FAILURE); }
-	if (macr.data)
+	if (batm.data)
 	{
-		for (i = 0; macr.data[i] != '\0'; i++)
+		for (i = 0; batm.data[i] != '\0'; i++)
 		{
-			if (macr.data[i] >= 48 && macr.data[i] <= 57)
+			if (batm.data[i] >= 48 && batm.data[i] <= 57)
 				j = 0;
 			else
 				j = 1;
 		}
 		if (j == 0)
-			num = atoi(macr.data);
+			num = atoi(batm.data);
 		else
 		{ fprintf(stderr, "L%u: usage: push integer\n",
-				line);
-			freeList((*stack));
+				line_number);
+			fmonkey((*stack));
 			free(new_node);
 			exit(EXIT_FAILURE); }
 	}
 	else
-	{ fprintf(stderr, "L%u: usage: push integer\n", line);
-		freeList((*stack));
+	{ fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		fmonkey((*stack));
 		free(new_node);
 		exit(EXIT_FAILURE); }
 	new_node->n = num;
@@ -53,14 +53,14 @@ void op_push(stack_t **stack, unsigned int line)
 /**
  * op_pall - opcode pall prints all the values on the stack
  * @stack: double linked list that makes the stack
- * @line: counter of lines
+ * @line_number: counter of lines
  *
  * Return: Nothing
  */
-void op_pall(stack_t **stack, unsigned int line)
+void op_pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *cp_stack;
-	(void)line;
+	(void)line_number;
 
 	cp_stack = *stack;
 	for (; cp_stack; cp_stack = cp_stack->next)
@@ -70,18 +70,18 @@ void op_pall(stack_t **stack, unsigned int line)
 /**
  * op_pop - opcode pop removes the top element of the stack
  * @stack: double linked list that makes the stack
- * @line: counter of lines
+ * @line_number: counter of lines
  *
  * Return: EXIT_FAILURE if failed
  */
-void op_pop(stack_t **stack, unsigned int line)
+void op_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
 
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%u: can't pop an empty stack\n", line);
-		freeList((*stack));
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		fmonkey((*stack));
 		exit(EXIT_FAILURE);
 	}
 	*stack = (*stack)->next;
@@ -93,16 +93,16 @@ void op_pop(stack_t **stack, unsigned int line)
 /**
  * op_pint - opcode pint prints the value at the top of the stack
  * @stack: double linked list that makes the stack
- * @line: counter of lines
+ * @line_number: counter of lines
  *
  * Return: EXIT_FAILURE if failed
  */
-void op_pint(stack_t **stack, unsigned int line)
+void op_pint(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%u: can't pint, stack empty\n", line);
-		freeList((*stack));
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+		fmonkey((*stack));
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);

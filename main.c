@@ -1,55 +1,35 @@
 #include "monty.h"
-exp macr = {NULL, NULL, NULL};
+exp batm = {NULL, NULL, NULL};
 /**
- * main - Main
- * @ac: length of arguments
- * @av: arguments used
- * Return: EXIT SUCCES OR FAILURE
+ * main - Entry point
+ * @ac: lenght of arguments pass to monty
+ * @av: arguments used by monty
+ * Return: EXIT SUCCESS if success, EXIT FAILURE if not
  */
 int main(int ac, char *av[])
 {
 	size_t len = 32;
 	ssize_t read;
-	unsigned int i = 0;
+	unsigned int line_number = 0;
 	stack_t *stack;
 
 	stack = NULL;
 	if (ac != 2)
 	{
-		write(STDERR_FILENO, "USAGE: monti file\n", 18);
+		write(STDERR_FILENO, "USAGE: monty file\n", 18);
 		exit(EXIT_FAILURE);
 	}
-	macr.fil = fopen(av[1], "r");
-	if (!macr.fil)
+	batm.fil = fopen(av[1], "r");
+	if (!batm.fil)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
-	while ((read = getline(&macr.buf, &len, macr.fil)) != EOF)
+	while ((read = getline(&batm.buf, &len, batm.fil)) != EOF)
 	{
-		i++;
-		tokenize(macr.buf, &stack, i);
+		line_number++;
+		split(batm.buf, &stack, line_number);
 	}
-	freeList(stack);
+	fmonkey(stack);
 	exit(EXIT_SUCCESS);
-}
-
-/**
- * freeList - free a list.
- * @stack: doubly linked list.
- * Return: void.
- */
-
-void freeList(stack_t *stack)
-{
-	stack_t *temp;
-
-	while (stack != NULL)
-	{
-		temp = stack->next;
-		free(stack);
-		stack = temp;
-	}
-	fclose(macr.fil);
-	free(macr.buf);
 }

@@ -1,20 +1,20 @@
 #include "monty.h"
 /**
- * tokenize - generate tokens
+ * split - generates tokens
  * @buf: buffer that keeps lines
  * @stack: Doubly linked list that makes the stack
- * @line: Counter of lines in the file
+ * @line_number: lines in the file
  *
- * Return: volined
+ * Return: void
  */
 
-void tokenize(char *buf, stack_t **stack, unsigned int line)
+void split(char *buf, stack_t **stack, unsigned int line_number)
 {
 	char *name, *temp;
 
 	name = strtok(buf, " \n\t");
 	temp = strtok(NULL, " \n\t");
-	macr.data = temp;
+	batm.data = temp;
 	if (name && name[0] != '#')
-		get_opcode(stack, line, name);
+		get_opcode(stack, line_number, name);
 }

@@ -6,10 +6,13 @@
 #include <unistd.h>
 
 /**
- * struct stack_s - doubly linked list representation of a stack
+ * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
- * @prev: points to the previous element of the stack
- * @next: points to the next element of the stack 
+ * @prev: points to the previous element of the stack (or queue)
+ * @next: points to the next element of the stack (or queue)
+ *
+ * Description: doubly linked list node structure
+ * for stack, queues, LIFO, FIFO Holberton project
  */
 typedef struct stack_s
 {
@@ -29,7 +32,7 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line);
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /**
@@ -48,14 +51,22 @@ typedef struct monty_val
 	FILE *fil;
 } exp;
 
-extern exp macr;
+extern exp batm;
 
-void tokenize(char *, stack_t **, unsigned int);
-void op_push(stack_t **stack, unsigned int line);
-void op_pall(stack_t **stack, unsigned int line);
-void op_pop(stack_t **stack, unsigned int line);
-void op_pint(stack_t **stack, unsigned int line);
+int _isdigit(int c);
+void split(char *, stack_t **, unsigned int);
+void op_push(stack_t **stack, unsigned int line_number);
+void op_pall(stack_t **stack, unsigned int line_number);
+void op_pop(stack_t **stack, unsigned int line_number);
+void op_pint(stack_t **stack, unsigned int line_number);
+void op_swap(stack_t **stack, unsigned int line_number);
+void op_add(stack_t **stack, unsigned int line_number);
+void op_sub(stack_t **stack, unsigned int line_number);
+void op_mul(stack_t **stack, unsigned int line_number);
+void op_div(stack_t **stack, unsigned int line_number);
+void op_mod(stack_t **stack, unsigned int line_number);
+void op_nop(stack_t **stack, unsigned int line_number);
 void get_opcode(stack_t **, unsigned int, char *);
-void freeList(stack_t *stack);
+void fmonkey(stack_t *stack);
 
 #endif /* MONTY_H */
